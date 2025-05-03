@@ -24,10 +24,8 @@ font.familyname = transform_name(font.fontname)
 font.fullname   = transform_name(font.fontname)
 font.fontname   = transform_name(font.fontname)
 
-# --- Step 4: Generate new unique ID ---
-timestamp = str(int(time.time()))
-rand_tag = ''.join(random.choices("abcdefghijklmnopqrstuvwxyz0123456789", k=4))
-font.appendSFNTName('English (US)', 'UniqueID', f"{font.fontname};{timestamp};{rand_tag}")
+# --- Step 4: Let FontForge generate a randomized UniqueID ---
+font.uniqueid = -1  # -1 tells FontForge to generate a valid UniqueID automatically
 
 # --- Step 5: Generate OTF output with '-fixed' appended to the filename ---
 input_dir = os.path.dirname(os.path.abspath(input_file))
