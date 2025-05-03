@@ -4,9 +4,6 @@
 import sys
 import fontforge
 import os
-import time
-import random
-import psMat  # Needed for scaling
 
 print(sys.argv)
 
@@ -26,13 +23,6 @@ def transform_name(name):
 font.familyname = transform_name(font.fontname)
 font.fullname   = transform_name(font.fontname)
 font.fontname   = transform_name(font.fontname)
-
-# --- Step 3: Set EM size for .otf standard ---
-if font.em != 1000:
-    scale_factor = 1000.0 / font.em
-    font.em = 1000
-    font.selection.all()
-    font.transform(psMat.scale(scale_factor))
 
 # --- Step 4: Generate new unique ID ---
 timestamp = str(int(time.time()))
