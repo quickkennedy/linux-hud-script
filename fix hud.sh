@@ -10,14 +10,7 @@ fi
 ORIG_FOLDER="$1"
 LOWER_FOLDER="$(echo "$ORIG_FOLDER" | tr '[:upper:]' '[:lower:]')"
 
-# Rename the folder to lowercase if it's not already
-if [ "$ORIG_FOLDER" != "$LOWER_FOLDER" ]; then
-  if [ -d "$LOWER_FOLDER" ]; then
-    echo "Target lowercase folder '$LOWER_FOLDER' already exists. Aborting."
-    exit 1
-  fi
-  mv "$ORIG_FOLDER" "$LOWER_FOLDER"
-fi
+mv "$ORIG_FOLDER" "$LOWER_FOLDER"
 
 # Move files from "linux scripts" into the renamed folder
 if [ ! -d "linux scripts" ]; then
