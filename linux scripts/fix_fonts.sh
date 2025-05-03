@@ -1,15 +1,12 @@
 #!/bin/bash
 
-# Cyberpunk Script: FontFixer 2077 - Backup Mode with Font2 Directory
-# Purpose: Copy "fonts" to "fonts2", then process .ttf and .otf files using FontForge and fixfont.py in "fonts2".
-
 FONT_DIR="./resource/fonts"  # Change this to your target directory
 SCRIPT="fixfont.py"
 BACKUP_DIR="$FONT_DIR/_backups"
 
 # Check if the FontForge script exists
 if [[ ! -f "$SCRIPT" ]]; then
-    echo "*ERROR:* $SCRIPT not found. Jack out and recheck your file paths."
+    echo "*ERROR:* $SCRIPT not found."
     exit 1
 fi
 
@@ -26,7 +23,7 @@ find "$FONT_DIR" -type f \( -iname "*.ttf" -o -iname "*.otf" \) | while read -r 
         continue
     fi
 
-    echo "*Processing font in fonts2:* $font"
+    echo "*Processing font in fonts:* $font"
 
     # Run fontforge on the font file
     fontforge -script "$SCRIPT" "$font"
@@ -47,8 +44,6 @@ find "$FONT_DIR" -type f \( -iname "*.ttf" -o -iname "*.otf" \) | while read -r 
         echo "*ERROR:* FontForge failed to process $font. No backup made."
     fi
 done
-
-echo "*Mission complete.* All fonts processed, renamed, and backed up in fonts2."
 
 # Define the file path
 file="resource/clientscheme.res"
