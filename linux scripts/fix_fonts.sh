@@ -44,21 +44,3 @@ find "$FONT_DIR" -type f \( -iname "*.ttf" -o -iname "*.otf" \) | while read -r 
         echo "*ERROR:* FontForge failed to process $font. No backup made."
     fi
 done
-
-# Define the file path
-file="resource/clientscheme.res"
-
-# Check if the file exists
-if [ ! -f "$file" ]; then
-  echo "File not found: $file"
-  exit 1
-fi
-
-# Replace .ttf" with .otf"
-sed -i 's/\.ttf"/\.otf"/g' "$file"
-
-# Replace .otf" with -fixed.otf"
-sed -i 's/\.otf"/-fixed.otf"/g' "$file"
-
-echo "Replacements completed in $file"
-
