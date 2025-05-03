@@ -28,20 +28,21 @@ function resolve_path() {
 function process_file() {
     local file="$1"
 
-    # Avoid reprocessing
+    # Strip Windows-style line endings or weird chars
+    file=$(echo "$file" | tr -d '\r')
+
     if [[ -n "${visited[$file]}" ]]; then return; fi
     visited["$file"]=1
     echo "$file" >> "$VISITED_FILE"
 
-    # Only process existing files
     if [[ -f "$file" ]]; then
-        echo "Running fix_clientscheme.sh on $file"
+        echo "Running $FIX_SCRIPT on $file"
         "$FIX_SCRIPT" "$file"
     else
+        echo "Skipping missing file: $file"
         return
     fi
 
-    # Now extract #base references and follow them
     local base_dir
     base_dir=$(dirname "$file")
 
@@ -49,9 +50,12 @@ function process_file() {
         base_path=$(echo "$line" | sed -n 's/^#base\s\+"\(.*\)"/\1/p')
         [[ -n "$base_path" ]] || continue
         resolved=$(resolve_path "$base_dir" "$base_path")
+        # Clean path again
+        resolved=$(echo "$resolved" | tr -d '\r')
         process_file "$resolved"
     done < <(grep -E '^#base\s+"[^"]+"' "$file")
 }
+
 
 
 # Start the recursive chaos
