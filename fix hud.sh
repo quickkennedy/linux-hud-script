@@ -23,3 +23,20 @@ mv "linux scripts"/* "$LOWER_FOLDER"/
 cd $LOWER_FOLDER
 
 ./master_script.sh
+
+
+# Delete the script
+
+#rm -f fixfont.py
+
+#rm -f fix_filenames.sh
+#rm -f fix_fonts.sh
+#rm -f fix_logbase.sh
+
+#rm -f master_script.sh
+
+#cd ..
+#rm -rf linux\ scripts
+
+#self deletion
+#rm -- "$0"
