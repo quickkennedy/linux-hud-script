@@ -6,6 +6,7 @@ this is a script designed to get a **good start** for linux support.
 - [🟩] fix folder and file names to be correct
 - [🟨] fix logbase to work on linux
 - [🟥] fix fonts to be loaded on both windows and linux perfectly without having to install (requires rewriting clientscheme parsing)
+- [🟥] resize icon fonts to work on linux, and create [$POSIX] entries for each.
 
 # running:
 
