@@ -24,11 +24,7 @@ font.familyname = transform_name(font.fontname)
 font.fullname   = transform_name(font.fontname)
 font.fontname   = transform_name(font.fontname)
 
-# --- Step 4: Let FontForge generate a randomized UniqueID ---
-font.uniqueid = -1  # -1 tells FontForge to generate a valid UniqueID automatically
-print("[debug] UniqueID set to:", font.uniqueid)
-
-# --- Step 5: Generate OTF output with '-fixed' appended to the filename ---
+# --- Step 3: Generate OTF output with '-fixed' appended to the filename ---
 input_dir = os.path.dirname(os.path.abspath(input_file))
 input_name = os.path.basename(input_file)  # Get just the file name
 output_name = os.path.splitext(input_name)[0] + "-fixed.otf"  # Add '-fixed' before extension
