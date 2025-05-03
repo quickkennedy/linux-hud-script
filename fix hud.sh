@@ -20,11 +20,6 @@ fi
 
 mv "linux scripts"/* "$LOWER_FOLDER"/
 
-# Run the master_script.sh
-if [ -x "$LOWER_FOLDER/master_script.sh" ]; then
-  "$LOWER_FOLDER/master_script.sh"
-else
-  echo "Script '$LOWER_FOLDER/master_script.sh' not found or not executable."
-  exit 1
-fi
+cd $LOWER_FOLDER
 
+./master_script.sh
