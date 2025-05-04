@@ -25,5 +25,12 @@ find "$cfg_folder" -type f -name "*.cfg" | while read -r file; do
     echo ">> Replaced $file with current dir '$current_folder'"
 done
 
+#loop through res files and fix their paths
+find . -type f -name "*.res" | while read -r file; do
+    echo "Patching: $file"
+    # Rewrite in place, no backups, no looking back
+    sed -i 's|\.\./cfg/|../../../cfg/|g' "$file"
+done
+
 echo ">> All done fixing logbase"
 
